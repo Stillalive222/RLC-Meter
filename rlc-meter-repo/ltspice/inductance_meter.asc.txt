@@ -1,0 +1,35 @@
+* LTspice netlist reference — Inductance Meter (74HC14 pulse-width stage)
+* Re-transcribed from Draft5.asc for repo documentation.
+* Import into a blank .asc in LTspice or rebuild manually using the
+* schematic image in this folder (inductance_meter_ltspice_schematic.png).
+
+.lib "74HC.lib"
+
+* --- Schmitt-trigger RC oscillator (U2) ---
+R3   a    12   19.75k
+R5   a    b    10k
+C2   b    0    1000p
+U2   b    12   74HC14      ; oscillator inverter
+
+* --- Parallel drive inverters (U7, U3, U4) into 330R network ---
+U7   12   io1  74HC14
+R7   io1  n1   330
+U3   12   n1   74HC14      ; (drawn as second parallel path to node n1)
+R1   n1   n1   330
+U4   12   n2   74HC14
+R8   n2   n1   330
+
+* --- Inductor under test ---
+L1   n1   0    100u
+
+* --- Pulse shaping + low-pass to DC ---
+U5   n1   io   74HC14
+U8   io   out  74HC14
+R2   out  vout 39000
+C1   vout 0    1u
+C3   vout 0    1u
+C4   vout 0    1u
+
+.tran 0 0.1 0 0.01 startup
+.backanno
+.end
