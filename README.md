@@ -146,7 +146,7 @@ Known accuracy limiters (documented in the report): parasitic capacitance/induct
 
 ## Authors
 
-Kartik Gupta, Khushal, **Anmol Kumar**, Subham Jaiswal — B.Tech Electrical Engineering, IIT Mandi
+Kartik Gupta, Parv Joshi, **Anmol Kumar**, Subham Jaiswal — B.Tech Electrical Engineering, IIT Mandi
 
 ## License
 
